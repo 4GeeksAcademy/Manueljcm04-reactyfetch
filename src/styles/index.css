@@ -13,3 +13,24 @@
 body {
     background-color: rgba(0, 34, 255, 0.183);
 }
+
+h1 {
+    text-align: left; 
+    margin-bottom: 40px;
+    text-decoration: underline;
+}
+
+
+input {
+    margin-top: 20px;
+    margin: 20px auto; 
+    display: block; 
+}
+
+li{
+    margin-top: 5px;
+    margin: 5px auto; 
+    display: block;  
+    text-align: center;
+}
+

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import imagen from "./../../img/tarea.png"
 
 //create your first component
 const Home = () => {
@@ -89,7 +89,15 @@ console.log(user);
 
 return (
     <div className="container">
-        <h1 className="text-center mt-5">Todo List Local</h1>
+        
+        <h1 className=" mt-5">Todo List Local</h1>
+        
+			<img src={imagen} style={{
+				width: "200px",
+				position: "absolute",
+				top: "30px",
+				right: "30px"
+			}} />
         <div className="todolist">
             <input placeholder="add task"
                 onChange={(Event) => setTask(Event.target.value)}
