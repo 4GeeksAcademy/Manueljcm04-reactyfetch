@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 
-
 //create your first component
 const Home = () => {
 
     const [task, setTask] = useState("");
     const [tasks, setTasks] = useState([]);
-    const [user, setUser] = useState ();
+    const [user, setUser] = useState();
 
     const createUser = async () => {
         await fetch("https://playground.4geeks.com/todo/users/manueljcm04",
-           { method: "POST" }
+            { method: "POST" }
         ).then(resp => {
             if (resp.ok) {
                 alert("se ha creado el usuario correctamente")
@@ -31,9 +30,8 @@ const Home = () => {
 
     useEffect(() => {
         getUser();
-	}, [])
-        
-    
+    }, [])
+
 
     const createTask = async (task) => {
         await fetch("https://playground.4geeks.com/todo/todos/manueljcm04", {
@@ -63,26 +61,30 @@ const Home = () => {
         if (!task || !task.trim()) {
             alert("el valor de la tarea no puede ser vacio")
         }
+
         createTask(task)
         setTask("");
     }
-    const deleteTask = async (task) => {
-        const id = task.id;
-        await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
-            method: "DELETE"
-        }).then(resp => {
-            if (resp.ok) {
-                const userTaks = user.todos.filter(item.id !== task.id)
-                const newUser = {
-                    ...user,
-                    todos: [...userTaks]
-                }
-            }
-        })
 
-    }
 
-    console.log(user);
+const deleteTask = async (task) => {
+    const id = task.id;
+    await fetch(`https://playground.4geeks.com/todo/todos/${id}`, {
+        method: "DELETE"
+    }).then(resp => {
+        if (resp.ok) {
+            const userTaks = user.todos.filter(item => item.id !== task.id)
+            const newUser = {
+                ...user,
+                todos: [...userTaks]
+            };
+            setUser(newUser)
+        }
+    })
+
+}
+
+console.log(user);
 
 
 return (
@@ -98,17 +100,16 @@ return (
                 user && user.todos.map((item) =>
                     <li key={item.id}>
                         {item.label}
-                        <span onClick={() => deleteTask(item)}> <i class="fa-solid fa-x"></i></span>
+                        <span onClick={() => deleteTask(item)}> <i className="fas fa-trash-alt"></i></span>
                     </li>)
             }
         </div>
-        <p className="text-center">
+
+         <p className="text-center">
             {user && user.todos.length ?
                 <span>Tienes {user && user.todos.length} tareas pendientes</span> : <span> No hay tareas pendientes</span>}
         </p>
-        <button onClick={() => deleteUser()}>
-            Delete User
-        </button>
+        
     </div>
 );
 }

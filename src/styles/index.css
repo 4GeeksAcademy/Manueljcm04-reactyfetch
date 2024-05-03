@@ -10,3 +10,6 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body {
+    background-color: rgba(0, 34, 255, 0.183);
+}
